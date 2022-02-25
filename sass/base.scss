@@ -77,6 +77,10 @@ $p-els: 'p, li, td';
     @include space-between;
     align-items: center;
 }
+@mixin space-between-vertical {
+    @include space-between;
+    flex-direction: column;
+}
 
 @mixin inset($amt: 0) {
     position: absolute;
