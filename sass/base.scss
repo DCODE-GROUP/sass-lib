@@ -57,4 +57,43 @@ $p-els: 'p, li, td';
     width: $width;
 }
 
+@mixin cols-of($colWidth, $colGap: 25px, $max: 1fr, $bp: 400px){
+    display: grid;
+    gap: $colGap;
+    grid-template-columns: repeat(auto-fit, minmax($colWidth, $max));
+    > * {
+        max-width: 100%;
+    }
+    @media (max-width: #{$bp}) {
+        grid-template-columns: repeat(auto-fit, minmax(100%, $max));
+    }
+}
 
+@mixin space-between {
+    display: flex;
+    justify-content: space-between;
+}
+@mixin space-between-center {
+    @include space-between;
+    align-items: center;
+}
+
+@mixin inset($amt: 0) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@mixin hide-vertical-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+        width: 0;
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        width: 0;
+    }
+}
