@@ -1,6 +1,6 @@
 {
   "name": "@dcodegroup-au/sass-lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "project-agnostic, no-side-effects, sass library of mixins, constants, and anything that could come in use in any project",
   "main": "index.js",
   "scripts": {
