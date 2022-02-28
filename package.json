@@ -9,6 +9,14 @@
   "keywords": [
     "sass"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DCODE-GROUP/sass-lib.git"
+  },
+  "homepage": "https://github.com/DCODE-GROUP/sass-lib#readme",
+  "bugs": {
+    "url": "https://github.com/DCODE-GROUP/sass-lib/issues"
+  },
   "author": "DcodeGroup",
   "license": "UNLICENSED"
 }
