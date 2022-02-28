@@ -35,6 +35,26 @@ $p-els: 'p, li, td';
     #{$propName}: #{(math.div($full, 11))}vw;
     #{$propName}: clamp(#{$sml}px, #{(math.div($full, 11))}vw, #{$full}px);
 }
+@mixin clamp-y($sml, $full, $propName: "padding") {
+    #{$propName}-top: #{(math.div($full, 11))}vw;
+    #{$propName}-bottom: #{(math.div($full, 11))}vw;
+    #{$propName}-top: clamp(#{$sml}px, #{(math.div($full, 11))}vw, #{$full}px);
+    #{$propName}-bottom: clamp(#{$sml}px, #{(math.div($full, 11))}vw, #{$full}px);
+}
+@mixin clamp-x($sml, $full, $propName: "padding") {
+    #{$propName}-left: #{(math.div($full, 11))}vw;
+    #{$propName}-right: #{(math.div($full, 11))}vw;
+    #{$propName}-left: clamp(#{$sml}px, #{(math.div($full, 11))}vw, #{$full}px);
+    #{$propName}-right: clamp(#{$sml}px, #{(math.div($full, 11))}vw, #{$full}px);
+}
+
+@mixin hover($initVal, $hoverVal, $propName: "color") {
+    #{$propName}: $initVal;
+    transition: #{$propName} 0.2s linear;
+    &:hover {
+        #{$propName}: $hoverVal;
+    }
+}
 
 @mixin inset($in: 0) {
     position: absolute;
@@ -80,6 +100,11 @@ $p-els: 'p, li, td';
 @mixin space-between-vertical {
     @include space-between;
     flex-direction: column;
+}
+@mixin flex-vertical($gap: 0) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
 }
 
 @mixin inset($amt: 0) {
