@@ -5,6 +5,7 @@
         $border-color: map-get($preset-palette, 'light-gray'),
         $palette: $preset-palette, 
         $table-header-color: map-get($preset-palette, 'secondary'),
+        $actions-max-width: 30px,
     ) {
     border-collapse: separate;
     border-spacing: 0 .5rem;
@@ -58,10 +59,75 @@
                 font-weight: 400;
                 margin: 0;
                 &.actions {
-                    width: 30px;
+                    width: $actions-max-width;
                     @include ellipsis;
                     > menu {
                         margin: 0;
+                    }
+                    > div {
+                        max-width: $actions-max-width;
+                        margin-left: auto;
+                        position: relative;
+                        h3, h4, h5 {
+                            font-size: 1rem;
+                        }
+                        > button {
+                            @include reset-btn;
+                            color: $border-color;
+                            display: inline-block;
+                            font-size: 1.5rem;
+                            line-height: 0;
+                            vertical-align: text-top;
+                            &.active {
+                                + ul {
+                                    opacity: 1;
+                                    overflow: visible;
+                                    padding: 0.25rem 0 .5rem;
+                                    height: auto;
+                                }
+                            }
+                        }
+                        > ul {
+                            right: 0;
+                            width: 160px;
+                            @include dropdown;
+                            &::after {
+                                content: '';
+                                background-color: #fff;
+                                border-left: 2px solid rgba($border-color, .5);
+                                border-top: 1px solid rgba($border-color, .5);
+                                height: 10px;
+                                position: absolute;
+                                right: 18px;
+                                top: -6px;
+                                transform: rotate(45deg);
+                                width: 10px;
+                                z-index: 11;
+                            }
+                            hr {
+                                margin: 10px 0 5px;
+                            }
+                            h4 {
+                                line-height: 1;
+                                margin: 0;
+                                padding: 0.75rem .75rem .5rem;
+                            }
+                            li {
+                                button {
+                                    @include reset-btn;
+                                    padding: 0.5rem 0.75rem;
+                                    text-align: left;
+                                }
+                                a {
+                                    padding: 0.5rem 0.75rem;
+                                }
+                                a,
+                                button {
+                                    color: grey;
+                                    font-weight: 400;
+                                }
+                            }
+                        }
                     }
                 }
             }

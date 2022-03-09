@@ -116,6 +116,9 @@
             width: 100%;
             li button {
                 @include reset-btn;
+                font-size: 14px;
+                text-align: left;
+                padding: 0.5rem 0.75rem;
             }
             &.open {
                 height: auto;
