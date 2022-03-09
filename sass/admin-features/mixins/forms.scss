@@ -25,9 +25,7 @@
         outline: none;
     }
 }
-@mixin forms(
-        $form-error: map-get($preset-palette, 'danger')
-    ) {
+@mixin forms($form-error: map-get($preset-palette, 'danger')) {
     > div,
     > fieldset > div {
         margin-bottom: 1rem;

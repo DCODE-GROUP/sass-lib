@@ -14,7 +14,6 @@
     margin-bottom: .5rem;
     padding: .5rem;
     transition: border-color 1s;
-
     > header {
         @include space-between-center;
         color: $header-color;

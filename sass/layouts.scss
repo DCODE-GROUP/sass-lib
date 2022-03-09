@@ -98,7 +98,6 @@ html {
     flex-flow: wrap;
 }
 
-//Grid helpers
 @mixin grids($cols: 1, $colGap : 0px,  $rowGap : 0px, $rows: 0) {
     display: grid;
     grid-gap: $rowGap $colGap;
@@ -110,7 +109,7 @@ html {
         grid-template-rows: auto;
     }
 }
-@mixin cols-of($colWidth, $colGap: 2rem, $max: 1fr, $bp: 400px){
+@mixin cols-of($colWidth, $bp: 600px, $colGap: 2rem, $max: 1fr){
     display: grid;
     gap: $colGap;
     grid-template-columns: repeat(auto-fit, minmax($colWidth, $max));
@@ -118,18 +117,6 @@ html {
         max-width: 100%;
     }
     @media (max-width: #{$bp}) {
-        grid-template-columns: repeat(auto-fit, minmax(100%, $max));
-    }
-}
-
-@for $i from 1 through 20 {
-    .cols-of-#{$i * 50} {
-        @include cols-of(#{$i * 50}px, 2rem, 1fr, #{$i * 75}px);
-        &.-no-max {
-            grid-template-columns: repeat(auto-fit, #{$i * 50}px);
-        }
-    }
-    .h-#{$i * 10} {
-        height: #{$i * 10%};
+        grid-template-columns: 1fr;
     }
 }
