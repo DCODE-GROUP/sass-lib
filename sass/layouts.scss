@@ -1,5 +1,5 @@
 @use 'sass:math';
-// @use './breakpoints.scss' as *;
+@use './breakpoints.scss' as *;
 
 html {
     box-sizing: border-box;
@@ -35,40 +35,36 @@ html {
     }
 }
 
-// $breakpoint will not be defined as it is in config variables
-// this must be used as a mixin and the $breakpoints passed into it
-@mixin flex-cols($breakpoint: xs) {
-    // would be better to loop over the $breakpoints rather than a single breakpoint
-    //     @each $bp, $val in $breakpoint {
-        //.flex-cols {
-        // &.#{"" + $val} {
-    $column: map-get($columns, $breakpoint);
-    @if $column == null {
-      @error 'Column `#{$breakpoint}` not found.';
-    }
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    $cols: map-get($column, columns);
-    $gutter: map-get($column, gutter);
-    @include media-breakpoint-up($breakpoint) {
-        @for $i from 1 through $cols {
-            .#{$breakpoint}-#{$i} {
-                width: math.div($i, $cols) * 100 * 1%;
-                border: none;
+@mixin flex-cols($columns, $breakpoints) {
+    .flex-cols {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        @each $size, $val in $columns {
+            $width: map-get($breakpoints, $size);
+            @if $width == null {
+              @error 'Column `#{$breakpoint}` not found.';
             }
-            .#{$breakpoint}-#{$i}.padd {
-                padding-left: #{$gutter}px;
-                padding-right: #{$gutter}px;
-            }
-            .#{$breakpoint}-#{$i}.mrg {
-                margin-left: #{$gutter}px;
-                margin-right: #{$gutter}px;
-                width: calc((#{math.div($i, $cols) * 100 * 1%}) - #{$gutter * 2}px);
+            $cols: map-get($val, columns);
+            $gutter: map-get($val, gutter);
+            @for $i from 1 through $cols {
+                .#{$size}-#{$i} {
+                    width: math.div($i, $cols) * 100 * 1%;
+                    border: none;
+                }
+                .#{$size}-#{$i}.padd {
+                    padding-left: #{$gutter}px;
+                    padding-right: #{$gutter}px;
+                }
+                .#{$size}-#{$i}.mrg {
+                    margin-left: #{$gutter}px;
+                    margin-right: #{$gutter}px;
+                    width: calc((#{math.div($i, $cols) * 100 * 1%}) - #{$gutter * 2}px);
+                }
             }
         }
+        @include flex-classes;
     }
-    @include flex-classes;
 }
 
 @mixin align-center {

@@ -4,6 +4,7 @@
 @mixin tiles(
         $tile-color: map-get($preset-palette, 'light-gray'),
         $tile-radius: 4px,
+        $tile-padding: 2px 2px 2px 4px,
         $palette: $preset-pallete
     ) {
     @include align-center;
@@ -11,6 +12,7 @@
     border-radius: $tile-radius;
     border: 1px solid shade($tile-color, 5%);
     margin-bottom: 1px;
+    padding: $tile-padding;
     transition: background-color 1s, border-color 1s, color 1s;
     .badge {
         + small,

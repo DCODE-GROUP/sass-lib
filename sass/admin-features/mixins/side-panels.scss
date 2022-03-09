@@ -1,4 +1,4 @@
-@use '../../preset/' as *;
+@use '../' as *;
 @use '../../layouts.scss' as *;
 
 @mixin sidePanel($panelWidth: 600px){

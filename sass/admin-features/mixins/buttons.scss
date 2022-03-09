@@ -85,7 +85,7 @@
     }
     &:disabled {
         color: tint($color, 25%);
-        background-color: tint($bg-color, 25%);
+        background-color: tint($hover-color, 25%);
     }
 }
 @mixin button-hollow($border-width: 1px) {
