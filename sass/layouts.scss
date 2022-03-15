@@ -7,7 +7,6 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
-
 @mixin flex-classes {
     &.justify-between {
         justify-content: space-between;
@@ -34,7 +33,6 @@ html {
         flex-wrap: nowrap;
     }
 }
-
 @mixin flex-cols($columns, $breakpoints) {
     .flex-cols {
         display: flex;
@@ -43,30 +41,31 @@ html {
         @each $size, $val in $columns {
             $width: map-get($breakpoints, $size);
             @if $width == null {
-              @error 'Column `#{$breakpoint}` not found.';
+              @error 'Column `#{$breakpoints}` not found.';
             }
             $cols: map-get($val, columns);
             $gutter: map-get($val, gutter);
-            @for $i from 1 through $cols {
-                .#{$size}-#{$i} {
-                    width: math.div($i, $cols) * 100 * 1%;
-                    border: none;
-                }
-                .#{$size}-#{$i}.padd {
-                    padding-left: #{$gutter}px;
-                    padding-right: #{$gutter}px;
-                }
-                .#{$size}-#{$i}.mrg {
-                    margin-left: #{$gutter}px;
-                    margin-right: #{$gutter}px;
-                    width: calc((#{math.div($i, $cols) * 100 * 1%}) - #{$gutter * 2}px);
+            @include media-breakpoint-up($size, $breakpoints) {
+                @for $i from 1 through $cols {
+                    .#{$size}-#{$i} {
+                        width: math.div($i, $cols) * 100 * 1%;
+                        border: none;
+                    }
+                    .#{$size}-#{$i}.padd {
+                        padding-left: #{$gutter}px;
+                        padding-right: #{$gutter}px;
+                    }
+                    .#{$size}-#{$i}.mrg {
+                        margin-left: #{$gutter}px;
+                        margin-right: #{$gutter}px;
+                        width: calc((#{math.div($i, $cols) * 100 * 1%}) - #{$gutter * 2}px);
+                    }
                 }
             }
         }
         @include flex-classes;
     }
 }
-
 @mixin align-center {
     display: flex;
     align-items: center;
@@ -84,20 +83,15 @@ html {
     @include space-between;
     align-items: center;
 }
-.align-center {
-    @include align-center;
+@mixin space-between-vertical {
+    @include space-between;
+    flex-direction: column;
 }
-.space-between-center {
-    @include space-between-center;
-}
-.flex {
+@mixin flex-vertical($gap: 0) {
     display: flex;
-    @include flex-classes;
+    flex-direction: column;
+    gap: $gap;
 }
-.flex-flow {
-    flex-flow: wrap;
-}
-
 @mixin grids($cols: 1, $colGap : 0px,  $rowGap : 0px, $rows: 0) {
     display: grid;
     grid-gap: $rowGap $colGap;
